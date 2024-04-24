@@ -1,0 +1,52 @@
+---
+title: "Desperate Housewives"
+author: "Oksana Chubatenko"
+output: html_document
+date: "2024-04-24"
+---
+`
+
+## Desperate Housewives
+
+Desperate Housewives is an American comedy-drama mystery television series created by Marc Cherry and produced by ABC Studios and Cherry Productions. It aired for eight seasons on ABC from October 3, 2004, until May 13, 2012, for a total of 180 episodes. Executive producer Marc Cherry served as showrunner. Other executive producers since the fourth season included *Bob Daily*, *George W. Perkins*, *John Pardee*, *Joey Murphy*, *David Grossman*, and *Larry Shaw*.
+
+![Image](/Users/oksana/Desktop/university/RR/TVshow/image.jpg "Real Housewives")
+```{r setuo, echo=FALSE}
+#library
+library(ggplot2)
+
+```
+
+```{r intro, echo= FALSE}
+#load data sets
+setwd("/Users/oksana/Desktop/university/RR/TVshow")
+rating <- read.csv("rating_views.csv")
+
+views <- read.csv("views_over_time.csv")
+```
+
+## Plots
+
+```{r , fig.width=8, fig.height=6, echo=FALSE}
+ggplot(views, aes(x = Season, y = X1)) +
+  geom_line() +
+  geom_point() + 
+  labs(title = "Views of 1st episond throught seasons", x = "Season", y = "Views of 1st episod") +
+  theme_minimal()
+```
+
+```{r , fig.width=8, fig.height=6, echo=FALSE}
+ggplot(rating, aes(x = Season, y = Rank)) +
+  geom_line() +
+  geom_point() + 
+  labs(title = "Ranking throught the season", x = "Season", y = "Rank") +
+  theme_minimal()
+```
+```{r , fig.width=8, fig.height=6, echo=FALSE}
+ggplot(rating, aes(x = Season, y = Overall.viewership)) +
+  geom_line() +
+  geom_point() + 
+  labs(title = "Overall viewership", x = "Season", y = "Viewership") +
+  theme_minimal()
+```
+An evident surge in rankings is apparent from the most recent season, showcasing a substantial increase. Throughout all seasons, the median ranking stands at `r mean(rating$Rank)`, indicating a notable shift in performance. Moreover, when considering the collective viewership across all seasons, the average stands at `r mean(rating$Overall.viewership)`, signifying consistent engagement and interest over time.
